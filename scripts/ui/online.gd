@@ -86,10 +86,13 @@ func _player_name() -> String:
 	return t if t != "" else tr("DEFAULT_PLAYER_NAME") % 1
 
 
-## Separa "dirección:puerto" (el puerto es opcional).
+## Separa "dirección:puerto" (el puerto es opcional). Una URL ("wss://algo.onrender.com") se deja
+## entera: Net.connect_to la usa tal cual.
 func _parse_address() -> Array:
 	var text := _address_edit.text.strip_edges()
 	var port := Net.DEFAULT_PORT
+	if text.contains("://"):
+		return [text, port]
 	if text.contains(":"):
 		port = int(text.get_slice(":", 1))
 		text = text.get_slice(":", 0)

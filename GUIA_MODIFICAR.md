@@ -253,16 +253,16 @@ Para que la mesa no muestre los botones del juez, ocúltalos en `_show_resolve()
 ## Jugar en línea con amigos
 
 En el menú principal, **Jugar en línea**. Cada jugador escribe su nombre y la dirección del
-servidor (`dirección:puerto`); uno pulsa **Crear sala** y les pasa el código de 4 letras a los otros
+servidor (`dirección:puerto`, o una URL como `wss://debate-cards.onrender.com`); uno pulsa **Crear sala** y les pasa el código de 4 letras a los otros
 dos, que lo escriben y pulsan **Unirse a la sala**. Cuando están los tres, quien creó la sala
 pulsa **Empezar partida**. Hay chat de texto y un interruptor de micrófono.
 
-**¿Qué servidor?** Dos formas:
+**¿Qué servidor?** Tres formas:
 
 1. **Uno de ustedes aloja la sala**: al crearla marca «Alojar la sala en este PC»; el juego muestra
    la dirección (por ejemplo `192.168.1.20:7777`) a la que se conectan los demás. Si están en
    la misma casa/red basta con eso y con permitir el juego en el firewall de Windows. Si están en
-   redes distintas, esa persona tiene que abrir el puerto UDP 7777 en su router, o usar una VPN
+   redes distintas, esa persona tiene que abrir el puerto TCP 7777 en su router, o usar una VPN
    de juegos (Tailscale, ZeroTier, Hamachi) y pasar la dirección de la VPN.
 2. **Servidor dedicado** (por ejemplo un VPS barato con Linux): copia el proyecto (o el juego
    exportado), instala Godot sin ventana y déjalo corriendo:
@@ -272,8 +272,10 @@ pulsa **Empezar partida**. Hay chat de texto y un interruptor de micrófono.
    # con un juego exportado:  ./Debate --headless -- --server --port=7777
    ```
 
-   Abre el puerto UDP 7777 en el firewall del servidor. Todos los jugadores usan la dirección
+   Abre el puerto TCP 7777 en el firewall del servidor. Todos los jugadores usan la dirección
    pública del servidor. Puede atender varias salas a la vez.
+3. **Render (gratis)**: el `Dockerfile` del proyecto ya lo deja listo; los pasos están en
+   [DESPLIEGUE_RENDER.md](DESPLIEGUE_RENDER.md). Los jugadores escriben `wss://<nombre>.onrender.com`.
 
 Cosas que conviene saber:
 

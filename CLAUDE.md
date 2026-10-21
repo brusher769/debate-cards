@@ -82,7 +82,8 @@ si es su turno y un aviso de a quién se espera si no lo es, y las acciones van 
 
 ### El juego en línea (`scripts/net/net.gd`, autoload `Net`)
 
-Multijugador de alto nivel de Godot (ENet/UDP). El mismo script corre en el servidor y en los
+Multijugador de alto nivel de Godot sobre WebSocket (`WebSocketMultiplayerPeer`, TCP), para poder
+alojar el servidor en Render (ver `DESPLIEGUE_RENDER.md` y el `Dockerfile`). El mismo script corre en el servidor y en los
 clientes; `c_*` son funciones que el cliente manda al servidor y `s_*` las que el servidor manda a
 los clientes.
 
@@ -94,7 +95,8 @@ los clientes.
   partida, la sala se cierra para todos (no hay reconexión).
 - **Tres formas de jugar**: servidor dedicado (`godot --headless --path . res://scenes/server.tscn
   -- --port=7777`, o `Debate.exe --headless -- --server`), o un jugador que aloja desde el propio
-  juego («Alojar la sala en este PC»), y los demás se conectan a su dirección.
+  juego («Alojar la sala en este PC»), y los demás se conectan a su dirección (`dirección:puerto` o
+  una URL `wss://…`).
 - **Chat** (`chat_panel.gd`): mensajes de texto reenviados por el servidor a la sala.
 - **Voz** (`scripts/voice/`, autoload `Voice`): códec μ-law 16 kHz (`voice_codec.gd`) y captura del
   micrófono con reenvío por el servidor. La red y el códec están probados; **el micrófono real no**

@@ -1,5 +1,9 @@
 extends Node
-## Autoload "Net": la capa de red del juego en línea (ENet, multijugador de alto nivel de Godot).
+## Autoload "Net": la capa de red del juego en línea (WebSocket, multijugador de alto nivel de Godot).
+##
+## Se usa WebSocket (y no ENet/UDP) para poder alojar el servidor en servicios web como Render,
+## que solo dejan pasar HTTP/WebSocket. El cliente acepta una URL completa ("wss://algo.onrender.com")
+## o "dirección:puerto" para la red local (se convierte en "ws://dirección:puerto").
 ##
 ## El mismo script corre en el servidor y en los clientes (las funciones @rpc tienen que existir
 ## igual en todos):
@@ -39,8 +43,14 @@ const ROOM_SIZE := 3
 const RESYNC_SECONDS := 5.0
 const MAX_NAME := 16
 const MAX_CHAT := 200
-## Segundos que se espera al servidor antes de rendirse (ENet tarda mucho más en avisar por sí solo).
+## Segundos que se espera al servidor antes de rendirse.
 const CONNECT_TIMEOUT := 8.0
+## Con una URL (servidor en internet) se espera más: el plan gratis de Render apaga el servidor si
+## nadie lo usa y tarda cerca de un minuto en despertarlo.
+const CONNECT_TIMEOUT_URL := 75.0
+## Tamaño de los búferes de WebSocket (bytes). Los de Godot por defecto (64 KB) se quedan cortos
+## para las fotos del estado y la voz.
+const WS_BUFFER := 512 * 1024
 
 # --- Estado del cliente ---
 ## Tu lugar en la sala (0, 1 o 2); -1 si no estás en ninguna.
@@ -83,10 +93,10 @@ func _ready() -> void:
 # Arranque: servidor, anfitrión y cliente
 # ---------------------------------------------------------------------------
 
-## Empieza a atender salas en `port` (UDP). Devuelve OK o el error de Godot.
+## Empieza a atender salas en `port` (TCP, WebSocket). Devuelve OK o el error de Godot.
 func start_server(port := DEFAULT_PORT) -> Error:
-	var peer := ENetMultiplayerPeer.new()
-	var err := peer.create_server(port, MAX_CLIENTS)
+	var peer := _new_peer()
+	var err := peer.create_server(port)
 	if err != OK:
 		return err
 	multiplayer.multiplayer_peer = peer
@@ -103,17 +113,28 @@ func host_here(port := DEFAULT_PORT) -> Error:
 	return err
 
 
-## Se conecta a un servidor. El resultado llega por las señales connected / connection_failed.
+## Se conecta a un servidor. `address` puede ser una URL completa ("wss://algo.onrender.com"; entonces
+## `port` no se usa) o una dirección ("192.168.1.20"). El resultado llega por las señales
+## connected / connection_failed.
 func connect_to(address: String, port := DEFAULT_PORT) -> Error:
-	var peer := ENetMultiplayerPeer.new()
-	var err := peer.create_client(address, port)
+	var is_url := address.contains("://")
+	var url := address if is_url else "ws://%s:%d" % [address, port]
+	var peer := _new_peer()
+	var err := peer.create_client(url)
 	if err != OK:
 		return err
 	multiplayer.multiplayer_peer = peer
 	_is_server = false
 	_connect_signals()
-	_connecting_until = Time.get_ticks_msec() / 1000.0 + CONNECT_TIMEOUT
+	_connecting_until = Time.get_ticks_msec() / 1000.0 + (CONNECT_TIMEOUT_URL if is_url else CONNECT_TIMEOUT)
 	return OK
+
+
+func _new_peer() -> WebSocketMultiplayerPeer:
+	var peer := WebSocketMultiplayerPeer.new()
+	peer.inbound_buffer_size = WS_BUFFER
+	peer.outbound_buffer_size = WS_BUFFER
+	return peer
 
 
 ## Corta la conexión (o apaga el servidor) y olvida la sala.
@@ -141,10 +162,17 @@ func _connect_signals() -> void:
 	if _connected_signals:
 		return
 	_connected_signals = true
+	multiplayer.peer_connected.connect(_on_peer_connected)
 	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+
+## WebSocket no tiene un tope de conexiones como ENet: el servidor corta a los que sobran.
+func _on_peer_connected(id: int) -> void:
+	if _is_server and multiplayer.get_peers().size() > MAX_CLIENTS:
+		(multiplayer.multiplayer_peer as WebSocketMultiplayerPeer).disconnect_peer(id)
 
 
 func _on_connected_to_server() -> void:

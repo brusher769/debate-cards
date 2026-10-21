@@ -125,7 +125,15 @@ el multijugador de alto nivel de Godot (UDP, puerto 7777 por defecto). Los jugad
 la dirección y el código de la sala. Ventajas: el servidor es autoritativo (guarda las manos), usa
 el mismo `DebateEngine` y no hace falta abrir puertos en casa de todos. Como alternativa, un jugador
 puede alojar la sala desde el propio juego («Alojar la sala en este PC»); entonces los demás se
-conectan a su dirección y él debe abrir el puerto UDP en su router y en el firewall de Windows.
+conectan a su dirección y él debe abrir el puerto en su router y en el firewall de Windows.
+
+**Cambio posterior: de ENet (UDP) a WebSocket (TCP).** Para alojar el servidor gratis en Render,
+que solo deja pasar HTTP/WebSocket, `Net` usa `WebSocketMultiplayerPeer`. Las RPC y las salas no
+cambiaron; lo único distinto: todo llega en orden y sin pérdidas (la voz «unreliable» también, con
+algo más de retraso si la red va mal), el tope de 60 conexiones lo aplica `Net` a mano, el puerto
+es TCP, y con una URL (`wss://…`) se esperan 75 s a que conecte porque Render despierta despacio.
+El `Dockerfile` arranca el servidor en Render (pasos en `DESPLIEGUE_RENDER.md`); no se pudo probar
+la imagen aquí (no hay Docker en este PC).
 
 - **Servidor autoritativo**: `Net` (scripts/net/net.gd) tiene las salas; cada una con su `GameRoom` y su
   `DebateEngine`. Cada acción que llega la valida el motor y **el servidor pone el índice del

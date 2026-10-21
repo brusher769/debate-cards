@@ -20,7 +20,8 @@ pasa el código a los otros dos. Hace falta un servidor:
 godot --headless --path . res://scenes/server.tscn -- --port=7777
 ```
 
-(en un VPS, o en el PC de un amigo con el puerto UDP 7777 abierto). También se puede marcar
+(en Render gratis, ver [DESPLIEGUE_RENDER.md](DESPLIEGUE_RENDER.md); en un VPS; o en el PC de un
+amigo con el puerto TCP 7777 abierto). También se puede marcar
 «Alojar la sala en este PC» al crearla y los demás se conectan a esa dirección. La sala tiene chat
 de texto y un interruptor de micrófono (ver [DECISIONES.md](DECISIONES.md) sobre la voz).
 
