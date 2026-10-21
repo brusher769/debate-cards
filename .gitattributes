@@ -1,0 +1,2 @@
+# Godot y los scripts .sh usan saltos de línea LF; así no se rompen al descargar en Windows
+* text=auto eol=lf
