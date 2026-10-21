@@ -1,0 +1,261 @@
+[gd_scene format=3 uid="uid://bki62hlowfncr"]
+
+[ext_resource type="Script" uid="uid://biu6pk17dbrv8" path="res://scripts/ui/table.gd" id="1_table"]
+[ext_resource type="Script" uid="uid://0t20mspa6o15" path="res://scripts/ui/stage_3d.gd" id="2_stage"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hud"]
+content_margin_left = 12.0
+content_margin_top = 6.0
+content_margin_right = 12.0
+content_margin_bottom = 6.0
+bg_color = Color(0.05, 0.06, 0.09, 0.78)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Table" type="Node3D" unique_id=832975708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0071092844, 0)
+script = ExtResource("1_table")
+
+[node name="Stage" type="Node3D" parent="." unique_id=38790370]
+unique_name_in_owner = true
+script = ExtResource("2_stage")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=857994769]
+
+[node name="Margin" type="MarginContainer" parent="HUD" unique_id=565845202]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Margin" unique_id=269468778]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="TopPanel" type="PanelContainer" parent="HUD/Margin/VBox" unique_id=1905370143]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="TopBar" type="HBoxContainer" parent="HUD/Margin/VBox/TopPanel" unique_id=1407958130]
+layout_mode = 2
+
+[node name="RoundLabel" type="Label" parent="HUD/Margin/VBox/TopPanel/TopBar" unique_id=249311522]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Turno 1"
+
+[node name="TopicLabel" type="Label" parent="HUD/Margin/VBox/TopPanel/TopBar" unique_id=2111897757]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "Tema"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TimerLabel" type="Label" parent="HUD/Margin/VBox/TopPanel/TopBar" unique_id=641831]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 2
+
+[node name="PlayersRow" type="HBoxContainer" parent="HUD/Margin/VBox" unique_id=848540914]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="InstructionPanel" type="PanelContainer" parent="HUD/Margin/VBox" unique_id=719141902]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="InstructionLabel" type="Label" parent="HUD/Margin/VBox/InstructionPanel" unique_id=1392014456]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Instrucción"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Center" type="Control" parent="HUD/Margin/VBox" unique_id=365630468]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="CenterPanel" type="PanelContainer" parent="HUD/Margin/VBox/Center" unique_id=1862336235]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(780, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -390.0
+offset_right = 390.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="CenterVBox" type="VBoxContainer" parent="HUD/Margin/VBox/Center/CenterPanel" unique_id=105577803]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="JudgePanel" type="VBoxContainer" parent="HUD/Margin/VBox/Center/CenterPanel/CenterVBox" unique_id=1020628517]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResultsLabel" type="RichTextLabel" parent="HUD/Margin/VBox/Center/CenterPanel/CenterVBox" unique_id=88176528]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 17
+theme_override_font_sizes/bold_font_size = 19
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+
+[node name="Footer" type="HBoxContainer" parent="HUD/Margin/VBox" unique_id=138104253]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 10
+alignment = 2
+
+[node name="HintPanel" type="PanelContainer" parent="HUD/Margin/VBox/Footer" unique_id=1285474035]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_hud")
+
+[node name="HintLabel" type="Label" parent="HUD/Margin/VBox/Footer/HintPanel" unique_id=1061961067]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Debate hablado: el juego lleva cartas, tiempo y puntos."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="SkipButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=228303598]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+text = "BTN_NO_RESPOND"
+
+[node name="JudgeEndButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=698861619]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+text = "BTN_JUDGE_END"
+
+[node name="InterruptButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=1989614729]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+text = "BTN_INTERRUPT"
+
+[node name="SwapButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=1220891968]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+text = "BTN_SWAP_WILD"
+
+[node name="DisagreeButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=1724380112]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "STANCE_DISAGREE"
+
+[node name="AgreeButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=865406459]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "STANCE_AGREE"
+
+[node name="ActionButton" type="Button" parent="HUD/Margin/VBox/Footer" unique_id=1673455440]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(210, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Continuar"
+
+[node name="Overlay" type="ColorRect" parent="HUD" unique_id=221545487]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.04, 0.06, 0.96)
+
+[node name="Center" type="CenterContainer" parent="HUD/Overlay" unique_id=1576848486]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="HUD/Overlay/Center" unique_id=1948130683]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="OverlayTitle" type="Label" parent="HUD/Overlay/Center/VBox" unique_id=1138003596]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "Título"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="OverlayBody" type="Label" parent="HUD/Overlay/Center/VBox" unique_id=1681659968]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Cuerpo"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="OverlayButton" type="Button" parent="HUD/Overlay/Center/VBox" unique_id=353046801]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(340, 56)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "Continuar"
+
+[node name="OverlayButton2" type="Button" parent="HUD/Overlay/Center/VBox" unique_id=55550690]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(340, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "Volver"

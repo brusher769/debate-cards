@@ -1,0 +1,174 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/online.gd" id="1_online"]
+
+[node name="Online" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_online")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09, 0.11, 0.15, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "ONLINE_TITLE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "ONLINE_HINT"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConnectBox" type="VBoxContainer" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="NameEdit" type="LineEdit" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 16
+
+[node name="AddressEdit" type="LineEdit" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1:7777"
+
+[node name="HostCheck" type="CheckBox" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "ONLINE_HOST_CHECK"
+
+[node name="HostInfo" type="Label" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ModeOption" type="OptionButton" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CreateButton" type="Button" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ONLINE_CREATE"
+
+[node name="Separator" type="HSeparator" parent="Center/VBox/ConnectBox"]
+layout_mode = 2
+
+[node name="CodeEdit" type="LineEdit" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+layout_mode = 2
+max_length = 4
+
+[node name="JoinButton" type="Button" parent="Center/VBox/ConnectBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "ONLINE_JOIN"
+
+[node name="RoomBox" type="VBoxContainer" parent="Center/VBox"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="CodeLabel" type="Label" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+
+[node name="ModeLabel" type="Label" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="PlayersLabel" type="Label" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="DataWarning" type="Label" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.2, 1)
+theme_override_font_sizes/font_size = 14
+text = "ONLINE_DATA_MISMATCH"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ChatHolder" type="VBoxContainer" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "ONLINE_START"
+
+[node name="LeaveButton" type="Button" parent="Center/VBox/RoomBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "ONLINE_LEAVE"
+
+[node name="StatusLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.7, 0.2, 1)
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="BackButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+text = "BACK"

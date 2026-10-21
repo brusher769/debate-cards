@@ -1,0 +1,21 @@
+{
+  "_comment": "Parámetros de las reglas (apartado 14 de REGLAS_DEBATE.md). Cambia un número y guarda: no hay que tocar código. Si falta una clave, el juego usa el valor por defecto de scripts/core/config.gd. Las tres últimas claves no están numeradas en las reglas pero también son datos.",
+  "cartas_normales_por_mano": 5,
+  "comodines_por_mano": 1,
+  "monedas_iniciales": 5,
+  "monedas_maximas": 10,
+  "costo_cambiar_comodin": 1,
+  "costo_lupa_comodin_extra": 1,
+  "duracion_turno_seg": 60,
+  "ventana_respuesta_comodin_seg": 10,
+  "end_min_puntos": 20,
+  "end_min_minutos": 5,
+  "juez_puede_terminar_minutos": 10,
+  "tiempo_interrogar_respuesta_seg": 30,
+  "puntos_juez": [5, -2, -1],
+  "penalizacion_max_con_soborno": -1,
+  "penalizacion_veredicto_fallido": -2,
+  "apelacion_opciones_seg": [0, 30, 60],
+  "refutacion_cadena_max": 2,
+  "inocente_perdida_max": -1
+}

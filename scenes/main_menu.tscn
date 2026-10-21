@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://bn1qlpridacdr"]
+
+[ext_resource type="Script" uid="uid://dp2frso7l0y4g" path="res://scripts/ui/main_menu.gd" id="1_main"]
+
+[node name="MainMenu" type="Control" unique_id=1939515841]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_main")
+
+[node name="Background" type="ColorRect" parent="." unique_id=174934038]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09, 0.11, 0.15, 1)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=718730506]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center" unique_id=1699858393]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Title" type="Label" parent="Center/VBox" unique_id=1429100027]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "APP_TITLE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox" unique_id=853862530]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "APP_SUBTITLE"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Spacer" type="Control" parent="Center/VBox" unique_id=431997273]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Center/VBox" unique_id=232210151]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 58)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "MENU_PLAY"
+
+[node name="OnlineButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 54)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "MENU_ONLINE"
+
+[node name="HowToButton" type="Button" parent="Center/VBox" unique_id=1100290542]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "MENU_HOWTO"
+
+[node name="OptionsButton" type="Button" parent="Center/VBox" unique_id=564324948]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "MENU_OPTIONS"
+
+[node name="QuitButton" type="Button" parent="Center/VBox" unique_id=1137696798]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "MENU_QUIT"

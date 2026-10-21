@@ -1,0 +1,122 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/options.gd" id="1_opt"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_opt")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.09, 0.11, 0.15, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "MENU_OPTIONS"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 18
+columns = 2
+
+[node name="LanguageLabel" type="Label" parent="Center/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPT_LANGUAGE"
+
+[node name="LanguageOption" type="OptionButton" parent="Center/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AspectLabel" type="Label" parent="Center/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPT_ASPECT"
+
+[node name="AspectOption" type="OptionButton" parent="Center/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FullscreenLabel" type="Label" parent="Center/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPT_FULLSCREEN"
+
+[node name="FullscreenCheck" type="Button" parent="Center/VBox/Grid"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(180, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+toggle_mode = true
+
+[node name="VolumeLabel" type="Label" parent="Center/VBox/Grid"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPT_VOLUME"
+
+[node name="VolumeRow" type="HBoxContainer" parent="Center/VBox/Grid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="VolumeSlider" type="HSlider" parent="Center/VBox/Grid/VolumeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 5.0
+value = 100.0
+
+[node name="VolumeValue" type="Label" parent="Center/VBox/Grid/VolumeRow"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="Spacer2" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "BACK"
